@@ -4,6 +4,7 @@
 
 # Unecessary files
 *.pyc
+local_settings.py
 
 # directories
 media/
