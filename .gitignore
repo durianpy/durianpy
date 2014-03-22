@@ -5,6 +5,7 @@
 # Unecessary files
 *.pyc
 local_settings.py
+*.DS_Store
 
 # directories
 media/
