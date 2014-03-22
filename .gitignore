@@ -1,0 +1,9 @@
+# local database
+*.db
+*sqlite3
+
+# Unecessary files
+*.pyc
+
+# directories
+media/
