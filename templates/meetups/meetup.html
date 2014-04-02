@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block extra_js %}
+{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<h1> {% trans 'Active Meetup' %} </h1>
+
+{{ meetup }}
+
+{% endblock %}

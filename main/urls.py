@@ -9,3 +9,8 @@ urlpatterns = patterns('',
     url(r'^about$', AboutView.as_view(), name='about'),
     url(r'^contact$', ContactView.as_view(), name='contact'),
 )
+
+# Apps
+urlpatterns += patterns('',
+    url(r'^meetups/', include('meetups.urls')),
+)

@@ -42,6 +42,7 @@ INSTALLED_APPS = (
 
     # Apps
     'main',
+    'meetups',
 )
 
 MIDDLEWARE_CLASSES = (
