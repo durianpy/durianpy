@@ -20,20 +20,21 @@ class Meetup(models.Model):
 
 class Attendee(models.Model):
 
-    STUDENT = 'student'
-    PROFESSIONAL = 'professional'
-    OTHER = 'other'
+    # STUDENT = 'student'
+    # PROFESSIONAL = 'professional'
+    # OTHER = 'other'
 
-    STATUS = (
-        (STUDENT, 'Student'),
-        (PROFESSIONAL, 'Professional'),
-        (OTHER, 'Other'),
-    )
+    # STATUS = (
+    #     (STUDENT, 'Student'),
+    #     (PROFESSIONAL, 'Professional'),
+    #     (OTHER, 'Other'),
+    # )
 
     first_name = models.CharField(max_length=75)
     last_name = models.CharField(max_length=75)
-
-    status = models.CharField(max_length=20, choices=STATUS)
+    profession = models.CharField(max_length=75, null=True, blank=True)
+    email = models.CharField(max_length=75, null=True, blank=True)
+    #status = models.CharField(max_length=20, choices=STATUS)
 
     def __unicode__(self):
         return "%s %s" % (self.first_name, self.last_name)
