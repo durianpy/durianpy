@@ -4,6 +4,9 @@ from django.shortcuts import render
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 
+# Models
+from meetups.models import Meetup
+
 
 
 class IndexView(TemplateView):
@@ -12,8 +15,10 @@ class IndexView(TemplateView):
     """
     template_name = 'main/index.html'
     context = {}
+    meetup_class = Meetup
 
     def get(self, request, *args, **kwargs):
+        self.context['feed'] = self.meetup_class.objects.all().order_by('-event_date')
         return render(request, self.template_name, self.context)
 
 

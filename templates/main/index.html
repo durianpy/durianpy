@@ -8,6 +8,71 @@
 {% endblock %}
 
 {% block content %}
-<h1> Index page </h1>
+<section class="header-content">
+    <div class="jumbotron">
+    <div class="extra-space"></div>
+        <h1>For the Love of Python!</h1>
+            <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+            <p><a class="btn btn-primary btn-lg">Learn more</a></p>
+    </div>
+</setion>
+<section class="newsfeed">
 
+    <div class="container">
+        <div class="row">
+            <h3><i class="fa fa-file-text-o"></i> News feed</h3>
+            <hr>
+
+            <div class="feed">
+                {% for item in feed %}
+                <div class="feed-item">
+                    <h4><strong><i class="fa fa-calendar"></i> {{ item.title|title }}</strong></h4>
+                    <div class="details">
+                        <!-- BASIC INFO -->
+                        <a href="{% url 'meetup' item.id %}" class="btn btn-success pull-right">Register Here</a>
+                        <label><strong>What:</strong></label> {{ item.event_type }}
+                        <br />
+                        <label><strong>When:</strong></label> {{ item.event_date }}
+                        <br />
+                        <label><strong>Where:</strong></label> {{ item.location }}
+                        <br /><br />
+                        <p>{{ item.description }}</p>
+
+                        <!-- TALKS -->
+                        <h4><strong><i class="fa fa-microphone"></i> Talks</strong></h4>
+                        <table class="table table-striped table-bordered">
+                            <tr>
+                                <th>Talk</th>
+                                <th>Speaker</th>
+                                <th>Handle</th>
+                            </tr>
+                            {% for talk in item.talks.all %}
+                            <tr>
+                                <td>{{ talk.title }}</td>
+                                <td>{{ talk.speaker }}</td>
+                                <td><a href="http://twitter.com/{{ talk.handle }}">@{{ talk.handle }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
+                        <!-- SPONSORS -->
+                        <h4><strong><i class="fa fa-thumbs-o-up"></i> SPONSORS</strong></h4>
+                        <ul>
+                            {% for sponsor in item.sponsors.all %}
+                            <li><a href="http://{{ sponsor.link }}">{{ sponsor.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        <br />
+                        <p>More sponsors are always welcome, feel free to <a href="#">contact us</a>.
+                    </div>
+                </div>
+                <div class="divider"></div>
+                {% endfor %}
+            </ul>
+            </div>
+
+        </div>
+    </div>
+
+</section>
 {% endblock %}

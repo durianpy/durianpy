@@ -1,0 +1,22 @@
+html, body { background-color:#FFF;}
+
+.extra-space {height:110px;}
+.divider {
+        background-color: #E5E5E5;
+    border-bottom: 1px dashed #4E4E4E;
+    height: 1px;
+    margin: 9px 1px;
+}
+
+/* Base */
+#main-nav {background-color:#FFFFFF; border-bottom:#F5F5F5 1px solid; height:95px;}
+    .navbar-brand {margin:7px 0 0 40px;}
+    .navbar-brand img {width:250px;}
+
+    .nav a {color:#606061;}
+    .sub-nav {margin:15px 60px 0 0;}
+
+/* News Feed */
+    .feed {padding: 10px 100px 5px;}
+
+footer {background-color:#282828; height:50px;}
