@@ -18,8 +18,12 @@ class MeetupView(FormView):
     meetup = Meetup
 
     def get(self, *args, **kwargs):
-        self.context['meetup'] = self.get_meetup(kwargs['meetup_id'])
+        meetup = self.get_meetup(kwargs['meetup_id'])
+        self.context['meetup'] = meetup
         self.context['form'] = self.form_class()
+
+        if int(meetup.get_available_tickets()) < 1:
+            self.context['disabled'] = 'disabled'
 
         return render(self.request, self.template_name, self.context)
 
@@ -27,13 +31,17 @@ class MeetupView(FormView):
         form = self.form_class(self.request.POST)
         if form.is_valid():
             attendee = form.save()
-            
-            # Add attendee to meetup
-            meetup = self.get_meetup(kwargs['meetup_id'])
-            meetup.attendees.add(attendee)
-            meetup.save()
 
-            return HttpResponseRedirect(reverse('meetup', args=[meetup.id]))
+            meetup = self.get_meetup(kwargs['meetup_id'])
+
+            if int(meetup.get_available_tickets()) > 0:
+                # Add attendee to meetup
+                meetup.attendees.add(attendee)
+                meetup.save()
+
+                return HttpResponseRedirect(reverse('index'))
+            else:
+                pass
 
         self.context['form'] = form
         return render(self.request, self.template_name, self.context)
