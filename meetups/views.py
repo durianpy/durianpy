@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -11,7 +12,7 @@ from meetups.models import Meetup
 from meetups.forms import AttendeeForm
 
 
-class MeetupView(FormView):
+class MeetupView(TemplateView):
     template_name = 'meetups/meetup.html'
     context = {}
     form_class = AttendeeForm
@@ -39,7 +40,9 @@ class MeetupView(FormView):
                 meetup.attendees.add(attendee)
                 meetup.save()
 
-                return HttpResponseRedirect(reverse('index'))
+                msg = "You are now registered to this meet-up. See you!"
+                messages.add_message(self.request, messages.SUCCESS, msg)
+                return HttpResponseRedirect(reverse('meetup', args=[meetup.id]))
             else:
                 pass
 

@@ -13,6 +13,14 @@
 
 <section class="meetup">
     <div class="container">
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-dismissable alert-{{ message.tags }} pull-right">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Well done!</strong> {{ message }}.
+                </div>
+                {% endfor %}
+            {% endif %}
         <div class="text-center">
             <h1>{{ meetup.title|title }}</h1>
             <p>{{ meetup.description }}</p>
@@ -58,7 +66,7 @@
             <hr>
         </div>
         <div class="pull-right">
-                Remaining tickets: {{ meetup.get_available_tickets }}
+            Remaining tickets: {{ meetup.get_available_tickets }}
         </div>
         <div class="col-md-6">
             <form class="form-horizontal" method="POST">
