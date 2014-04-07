@@ -8,14 +8,15 @@
 {% endblock %}
 
 {% block content %}
-<section class="header-content">
+<!-- <section class="header-content">
     <div class="jumbotron">
     <div class="extra-space"></div>
         <h1>For the Love of Python!</h1>
             <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
             <p><a class="btn btn-primary btn-lg">Learn more</a></p>
     </div>
-</setion>
+</setion> -->
+<div class="extra-space"></div>
 <section class="newsfeed">
 
     <div class="container">
@@ -29,7 +30,11 @@
                     <h4><strong><i class="fa fa-calendar"></i> {{ item.title|title }}</strong></h4>
                     <div class="details">
                         <!-- BASIC INFO -->
-                        <a href="{% url 'meetup' item.id %}" class="btn btn-success pull-right">Register Here</a>
+                        {% if item.active %}
+                            <a href="{% url 'meetup' item.id %}" class="btn btn-success pull-right">Register Here</a>
+                        {% else %}
+                            <a href="#" class="btn btn-default disabled pull-right">Register Here</a>
+                        {% endif %}
                         <label><strong>What:</strong></label> {{ item.event_type }}
                         <br />
                         <label><strong>When:</strong></label> {{ item.event_date }}
