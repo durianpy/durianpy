@@ -12,6 +12,11 @@ class MeetupAdmin(admin.ModelAdmin):
 class AttendeeAdmin(admin.ModelAdmin):
     model = Attendee
 
+    def full_name(obj):
+        return "%s %s" % (obj.first_name, obj.last_name)
+
+    list_display = [full_name, 'email', 'profession', 'python_exp']
+
 
 # Register to admin 
 admin.site.register(Meetup, MeetupAdmin)
