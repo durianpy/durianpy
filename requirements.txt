@@ -1,3 +1,7 @@
 Django==1.6.2
 South==0.8.4
 wsgiref==0.1.2
+
+# Heroku apps
+psycopg2==2.4.5
+dj-database-url==0.2.2
