@@ -3,6 +3,15 @@
 {% load static from staticfiles %}
 
 {% block extra_js %}
+<script src="{% static 'main/js/main.js' %}"></script>
+<script type="text/javascript">
+    // TODO: Should use django-reverse-js
+    // i'll put it here temporarily because i am lazy
+    window.URLS = {
+        'registerURL': "{% url 'meetup_register' %}",
+    }
+
+</script>
 {% endblock %}
 
 {% block extra_css %}
@@ -65,7 +74,7 @@
                         </div>
                         <div class="col-md-4">
                             {% if item.active %}
-                                <a href="#" class="btn btn-success btn-lg pull-right">./manage.py&nbsp;&nbsp;<strong>JOIN</strong></a>
+                                <a href="#" class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target="#meetup_modal_{{ item.id }}">./manage.py&nbsp;&nbsp;<strong>JOIN</strong></a>
                             {% else %}
                                 <a href="#" class="btn btn-default btn-lg disabled pull-right">This is over</a>
                             {% endif %}
@@ -76,6 +85,75 @@
                 {% if not forloop.last %}
                     <div class="divider"></div>
                 {% endif %}
+
+                <!-- REGISTER MODAL -->
+                <div class="modal" id="meetup_modal_{{ item.id }}">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title">{{ item.title }}</h4>
+                            </div>
+
+                            <div class="modal-body">
+                                <form id="meetup_form_{{ item.id }}" class="form-horizontal">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="meetup_id" value="{{ item.id }}" />
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label for="inputEmail" class="col-lg-2 control-label">First name</label>
+                                            <div class="col-lg-10">
+                                                {{ form.first_name.errors }}
+                                                <input class="form-control" {% if not item.active %}disabled="disabled"{% endif %} id="inputText" placeholder="Enter first name" type="text" name="first_name">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail" class="col-lg-2 control-label">Last name</label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control" {% if not item.active %}disabled="disabled"{% endif %} id="inputText" placeholder="Enter last name" type="text" name="last_name">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            {{ form.email.errors }}
+                                            <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control" {% if not item.active %}disabled="disabled"{% endif %} id="inputText" placeholder="Enter email" type="text" name="email">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="inputEmail" class="col-lg-2 control-label">Profession</label>
+                                            <div class="col-lg-10">
+                                                <input class="form-control" {% if not item.active %}disabled="disabled"{% endif %} id="inputText" placeholder="If student put `Student` else enter profession" type="text" name="profession">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="select" class="col-lg-2 control-label">Python Experience</label>
+                                            <div class="col-lg-10">
+                                                <select class="form-control" {% if not item.active %}disabled="disabled"{% endif %} id="select" name="python_exp">
+                                                    <option value="0">No experience</option>
+                                                    <option value="1">Beginner</option>
+                                                    <option value="2">Intermediate</option>
+                                                    <option value="3">Expert</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </form>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-success meetup-submit-btn" meetup-id="{{ item.id }}" {% if not item.active %}disabled="disabled"{% endif %}>REGISTER</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {% endfor %}
             </div>
 

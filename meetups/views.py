@@ -33,7 +33,7 @@ class MeetupView(TemplateView):
         if form.is_valid():
             attendee = form.save()
 
-            meetup = self.get_meetup(kwargs['meetup_id'])
+            meetup = self.get_meetup(self.request.POST['meetup_id'])
 
             if int(meetup.get_available_tickets()) > 0:
                 # Add attendee to meetup
@@ -53,4 +53,3 @@ class MeetupView(TemplateView):
 
     def get_meetup(self, meetup_id):
         return self.meetup.objects.get(id=meetup_id)
-
