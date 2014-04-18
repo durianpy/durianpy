@@ -3,21 +3,51 @@ html, body { background-color:#FFF;}
 .extra-space {height:110px;}
 .divider {
         background-color: #E5E5E5;
-    border-bottom: 1px dashed #4E4E4E;
+    border-bottom: 1px dotted #BABABA;
     height: 1px;
     margin: 9px 1px;
 }
 
-/* Base */
-#main-nav {background-color:#FFFFFF; border-bottom:#F5F5F5 1px solid; height:95px;}
-    .navbar-brand {margin:7px 0 0 40px;}
-    .navbar-brand img {width:250px;}
+.divider-inside {
+    background-color: #E5E5E5;
+    border-bottom: 1px solid #747474;
+    opacity:0.6;
+    height: 1px;
+    margin: 9px 1px 25px;
+}
+.jumbotron {background-color:transparent;}
 
+/* Base */
+#main-nav {background-color:transparent; height:95px;}
+
+/*    .navbar-brand {margin:7px 0 0 40px;}
+    .navbar-brand img {width:250px;}*/
+
+    .sub-nav {margin:15px 60px 0 0; }
     .nav a {color:#606061;}
-    .sub-nav {margin:15px 60px 0 0;}
+    .navbar-nav {background-color:#FFF; opacity:0.7;}
+
+/* Header content */
+.header-content {
+    background:url('../img/home-bg.jpg') no-repeat fixed center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:650px;
+}
 
 /* News Feed */
+.newsfeed {}
     .feed {padding: 10px 100px 5px;}
-    .feed-item {margin: 40px 0;}
+    .speaker-logo {width:210px; height:210px;}
+    .sponsorship-link {color:#747474;}
 
-footer {background-color:#282828; height:50px;}
+
+footer {
+    background-color:#393939;
+    height:100px;
+    color:#FFF;
+}
+    .footer-nav li{ display:inline-block; font-size:20px}
+    .logo-footer {width:75px; margin:8px -25px;}

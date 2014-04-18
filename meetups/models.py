@@ -31,6 +31,8 @@ class Talk(models.Model):
 
     title = models.CharField(max_length=255)
     speaker = models.CharField(max_length=200)
+    profession = models.CharField(max_length=200, null=True, blank=True)
+    image = models.FileField(upload_to="speakers/", null=True, blank=True)
     handle = models.CharField(max_length=50, null=True, blank=True)
 
     def __unicode__(self):

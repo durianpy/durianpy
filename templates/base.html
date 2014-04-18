@@ -25,33 +25,50 @@
     </head>
 
     <body>
-        <div id="main-nav" class="navbar-fixed-top">
+        {% block main-nav %}
+        <div id="main-nav" class="pull-left">
             <div class="row">
-                <div class="navbar-header">
-                    <div class="navbar-brand">
-                        <img src="{% static 'img/durianpy-text-logo.png' %}">
-                    </div>
-                </div>
-                <div class="navbar-right sub-nav">
+                <div class="navbar-left sub-nav">
+                    <ul class="nav navbar-nav" style="margin:0px 1px 0 60px;">
+                        <li>
+                            <img src="{% static 'img/durianpy-text-logo.png' %}" width="232px;">
+                        </li>
+                    </ul>
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="{% url 'index' %}"><h4>News</h4></a>
                         </li>
                         <li>
-                            <a href="#"><h4>About</h4></a>
+                            <a href="{% url 'contact' %}"><h4>About</h4></a>
                         </li>
                         <li>
-                            <a href="{% url 'contact' %}"><h4>Contact</h4></a>
+                            <a href="#"><h4>Sponsorship</h4></a>
+                        </li>
+                        <li>
+                            <a href="#"><h4>Archive</h4></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
+        {% endblock %}
 
         {% block content %}
         {% endblock %}
 
         <div class="extra-space"></div>
+
+        <footer>
+            <div class="row">
+                <div class="col-md-1">
+                    <img src="{% static 'img/logo-trans.png' %}" class="logo-footer"/>
+                </div>
+                <div class="col-md-4 text-left">
+                    <h3>Durianpy</h3>
+                    <h5><i>Python Enthausiasts in Davao City</i></h5>
+                </div>
+            </div>
+        </footer>
 
         <!-- JAVASCRIPT Files -->
         <script>window.jQuery || document.write("<script src='{% static 'js/jquery-1.11.0.js' %}'><\/script>")</script>
