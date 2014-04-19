@@ -43,6 +43,17 @@ html, body { background-color:#FFF;}
     .speaker-logo {width:210px; height:210px;}
     .sponsorship-link {color:#747474;}
 
+#about-header {
+    background:url('../img/about-bg.jpg') no-repeat fixed center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:650px;
+}
+    .contact-links a {margin:15px;}
+    .contributors-list > .top {margin:45px 0;}
+
 /* Archive */
 #archive {background-color:#B9B9B9;}
 

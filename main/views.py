@@ -1,3 +1,6 @@
+import urllib2
+import json
+
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -41,6 +44,11 @@ class ContactView(TemplateView):
     context = {}
 
     def get(self, request, *args, **kwargs):
+        # Get contributors
+        response = urllib2.urlopen('https://api.github.com/repos/durianpy/durianpy/contributors')
+        contributors = json.loads(response.read())
+        self.context['contributors'] = contributors
+
         return render(request, self.template_name, self.context)
 
 
@@ -52,4 +60,5 @@ class ArchiveView(TemplateView):
     def get(self, *args, **kwargs):
         meetups = self.meetup.objects.all().order_by('-event_date')
         self.context['meetups'] = meetups
+
         return render(self.request, self.template_name, self.context)
