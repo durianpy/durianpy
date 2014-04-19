@@ -42,3 +42,14 @@ class ContactView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name, self.context)
+
+
+class ArchiveView(TemplateView):
+    template_name = 'main/archive.html'
+    context = {}
+    meetup = Meetup
+
+    def get(self, *args, **kwargs):
+        meetups = self.meetup.objects.all().order_by('-event_date')
+        self.context['meetups'] = meetups
+        return render(self.request, self.template_name, self.context)
