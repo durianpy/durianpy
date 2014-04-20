@@ -8,15 +8,101 @@
 {% endblock %}
 
 {% block content %}
+<section id="about-header">
+</section>
+
 <section class="contact">
     <div class="container">
-        <div class="extra-space"></div>
-        <div class="extra-space"></div>
-
-        <div class="text-center">
-            <p>This page is still under construction. Please email us at <a href="mailto:durianpy.ph@gmail.com">durianpy.ph@gmail.com</a></p>
+        <div class="jumbotron text-center">
+            <h2>About Us</h2>
+            <blockquote>
+                <p>We are Awesome.</p>
+                <small>Said by<cite title="Source Title"></cite> Everyone</small>
+            </blockquote>
         </div>
+        <div class="clearfix"></div>
+
+        <hr>
+        <div id="contact">
+            <div class="jumbotron text-center">
+                <h2>Keep in touch with us</h2>
+            </div>
+            <div class="col-md-6 text-center">
+                <h3>DurianPy</h3>
+                <p>Davao City, Philippines</p>
+
+                <br />
+
+                <div class="contact-links">
+                    <a href="mailto:durianpy.ph@gmail.com"><i class="fa fa-envelope fa-3x"></i></a>
+                    <a href="https://github.com/durianpy"><i class="fa fa-github fa-3x"></i></a>
+                    <a href="http://twitter.com/durianpy"><i class="fa fa-twitter fa-3x"></i></a>
+                    <a href="http://www.durianpy.com"><i class="fa fa-code fa-3x"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <form method="POST" class="form-horizontal">
+                    {% csrf_token %}
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="col-lg-10">
+                                <input class="form-control" id="inputEmail" placeholder="My name is..." type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-10">
+                                <input class="form-control" id="inputEmail" placeholder="Please Respond at..." type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-10">
+                                <textarea class="form-control" rows="13" placeholder="I want to talk about..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-10">
+                                <button type="" class="btn btn-primary pull-right">Send</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+
+        <hr>
+        <br />
+        <div id="contributors" class="text-center">
+            <h3>We would like to thank those who contribute to our site</h3>
+            <p><i>Top 3 will get their avatar shown in this page. sorry guys! XD</i></p>
+            <div class="contributors-list">
+                {% for contributor in contributors %}
+                {% if forloop.counter < 4 %}
+                <div class="top col-md-4 cold-sm-4">
+                    <img src="{{ contributor.avatar_url }}" class="img-circle speaker-logo">
+                    <h4><i class="fa fa-github fa-lg"></i> <a href="{{ contributor.html_url }}">{{ contributor.login }}</a></h4>
+                    <h5>Commits: {{ contributor.contributions }}</h5>
+                </div>
+                {% else %}
+                <div class="col-md-3 col-sm-3">
+                    <h5><i class="fa fa-github fa-lg"></i> <a href="{{ contributor.html_url }}">{{ contributor.login }}</a> / commits: {{ contributor.contributions }}</h5>
+                </div>
+                {% endif %}
+
+                {% endfor %}
+                <div class="clearfix"></div>
+                <div class="other-contributors">
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <div class="extra-space"></div>
 </section>
 
 {% endblock %}

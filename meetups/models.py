@@ -35,6 +35,9 @@ class Talk(models.Model):
     image = models.FileField(upload_to="speakers/", null=True, blank=True)
     handle = models.CharField(max_length=50, null=True, blank=True)
 
+    # Speaker Deck slide
+    deck = models.TextField(null=True, blank=True)
+
     def __unicode__(self):
         return "%s" % self.title
 
