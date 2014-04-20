@@ -51,7 +51,7 @@
                     <div class="speaker-container">
                         {% for talk in item.talks.all %}
                         <div class="col-sm-6 col-md-6 text-center">
-                            <img src="{% if talk.image %}media/{{ talk.image }}{% else %}{% static 'img/logo-dark.png' %}{% endif %}" class="img-circle speaker-logo">
+                            <img src="{% if talk.image %}media/{{ talk.image }}{% else %}{% static 'img/durianpy.png' %}{% endif %}" class="img-circle speaker-logo">
                             <h4>{{ talk.speaker }}</h4>
                             <h4><i>{{ talk.profession }}</i></h4>
                             <p>{{ talk.title }}</p>
